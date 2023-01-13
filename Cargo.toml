@@ -1,0 +1,16 @@
+[package]
+name = "sjlj"
+version = "0.0.1"
+edition = "2021"
+authors = ["Jordan Isaacs <mail@jdisaacs.com>"]
+license = "MIT"
+homepage = "https://github.com/jordanisaacs/sjlj"
+repository = "https://github.com/jordanisaacs/sjlj"
+description = "setjmp/longjmp for Rust"
+
+exclude = ["/flake.*"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+naked-function = "0.1.0"
