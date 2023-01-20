@@ -9,6 +9,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "linux-raw-sys"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "907a6699022e3baa15f1b642af8cb7583931729092ba5fcaccb7de619e4d0704"
+
+[[package]]
 name = "naked-function"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -48,10 +54,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "sc"
+version = "0.2.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "010e18bd3bfd1d45a7e666b236c78720df0d9a7698ebaa9c1c559961eb60a38b"
+
+[[package]]
 name = "sjlj"
 version = "0.0.1"
 dependencies = [
+ "linux-raw-sys",
  "naked-function",
+ "sc",
 ]
 
 [[package]]

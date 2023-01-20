@@ -14,3 +14,5 @@ exclude = ["/flake.*"]
 
 [dependencies]
 naked-function = "0.1.0"
+linux-raw-sys = "0.2.1"
+sc = "0.2.7"
