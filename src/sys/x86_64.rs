@@ -1,4 +1,6 @@
+#[cfg(target_os = "linux")]
 use super::{sigsetjmp_tail, SigJumpBuf};
+
 use crate::JumpBuf;
 
 pub(crate) const JUMP_BUF_SIZE: usize = 8;
@@ -7,15 +9,16 @@ pub(crate) const JUMP_BUF_SIZE: usize = 8;
 
 /// Dynamically establishes the target to which control will later be transferred.
 ///
-/// Saves various information about the calling environment in the [`crate::JumpBuf`] env.
+/// Saves various information about the calling environment in the [`crate::SigJumpBuf`] env.
 /// Signal masks can saved/restored if `save_mask` is set. Returns 0 when called. When returned to
-/// from [`crate::longjmp`] it returns the `ret` value passed in (always greater than 0)
+/// from [`crate::siglongjmp`] it returns the `ret` value passed in (always greater than 0)
 ///
 /// Safety:
 ///
 /// Protect against the [return twice](https://github.com/rust-lang/rfcs/issues/2625)
 /// miscompilation. Use volatile reads/writes to get around it.
 #[naked_function::naked]
+#[cfg(target_os = "linux")]
 pub unsafe extern "C" fn sigsetjmp(env: &mut SigJumpBuf, save_mask: bool) -> u32 {
     // TODO: Use target_os cfg when naked_function merges cfg passthrough
     asm!(
@@ -44,7 +47,7 @@ pub unsafe extern "C" fn sigsetjmp(env: &mut SigJumpBuf, save_mask: bool) -> u32
 /// Dynamically establishes the target to which control will later be transferred.
 ///
 /// Saves various information about the calling environment in the [`crate::JumpBuf`] env.
-/// Signal masks are not are not saved/restored. Returns 0 when called. When returned to
+/// Signal masks are not saved/restored. Returns 0 when called. When returned to
 /// from [`crate::longjmp`] it returns the `ret` value passed in (always greater than 0)
 ///
 /// Safety:

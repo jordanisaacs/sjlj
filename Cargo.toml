@@ -13,6 +13,8 @@ exclude = ["/flake.*"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-naked-function = "0.1.0"
+naked-function = "0.1.1"
+
+[target.'cfg(target_os = "linux")'.dependencies]
 linux-raw-sys = "0.2.1"
 sc = "0.2.7"
