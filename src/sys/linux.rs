@@ -1,10 +1,12 @@
 use linux_raw_sys::general::{__NR_rt_sigprocmask, sigset_t, SIG_SETMASK};
 
-use super::{longjmp, JUMP_BUF_SIZE};
+use crate::JumpBuf;
+
+use super::longjmp;
 
 #[repr(C)]
 pub struct SigJumpBuf {
-    jmp_buf: [usize; JUMP_BUF_SIZE],
+    jmp_buf: JumpBuf,
     fl: usize,
     rbx: usize,
     ss: [u8; Self::SS_SIZE],
@@ -15,7 +17,7 @@ impl SigJumpBuf {
 
     pub const fn new() -> SigJumpBuf {
         SigJumpBuf {
-            jmp_buf: [0; JUMP_BUF_SIZE],
+            jmp_buf: JumpBuf::new(),
             fl: 0,
             rbx: 0,
             ss: [0; Self::SS_SIZE],
@@ -46,9 +48,11 @@ pub(crate) unsafe extern "C" fn sigsetjmp_tail(env: &mut SigJumpBuf, ret: u32) -
 /// Performs transfer of execution to a location dynamically established by [`crate::sigsetjmp`].
 ///
 /// Does the same thing as [`crate::longjmp`] but takes a [`crate::SigJumpBuf`] that can
-/// restore signal masks of restoring signal masks (if set by [`crate::sigsetjmp`]).
+/// restore signal masks (if set by [`crate::sigsetjmp`]).
 /// This makes is *safer* to use in signal handlers.
+///
+/// See [`crate::longjmp`] for safety.
 #[inline]
 pub unsafe fn siglongjmp(env: &SigJumpBuf, ret: u32) -> ! {
-    longjmp(&std::mem::transmute(env.jmp_buf), ret);
+    longjmp(&env.jmp_buf, ret);
 }
