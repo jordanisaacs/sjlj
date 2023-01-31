@@ -1,3 +1,5 @@
+#![no_std]
+
 mod sys;
 
 pub use sys::*;
@@ -24,7 +26,7 @@ mod tests {
         if unsafe { setjmp(&mut sjlj_buf) } != 0 {
             // Volatile read to get around the return_twice issue
             // https://github.com/rust-lang/rfcs/issues/2625
-            unsafe { std::ptr::read_volatile(&x as *const _) };
+            unsafe { core::ptr::read_volatile(&x as *const _) };
             debug_assert!(x == 13);
             return;
         }

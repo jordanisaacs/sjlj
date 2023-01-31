@@ -13,7 +13,7 @@ pub struct SigJumpBuf {
 }
 
 impl SigJumpBuf {
-    const SS_SIZE: usize = std::mem::size_of::<sigset_t>();
+    const SS_SIZE: usize = core::mem::size_of::<sigset_t>();
 
     pub const fn new() -> SigJumpBuf {
         SigJumpBuf {

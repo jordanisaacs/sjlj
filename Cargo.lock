@@ -61,7 +61,7 @@ checksum = "010e18bd3bfd1d45a7e666b236c78720df0d9a7698ebaa9c1c559961eb60a38b"
 
 [[package]]
 name = "sjlj"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "linux-raw-sys",
  "naked-function",
