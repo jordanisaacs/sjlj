@@ -16,5 +16,5 @@ exclude = ["/flake.*"]
 naked-function = "0.1.1"
 
 [target.'cfg(target_os = "linux")'.dependencies]
-linux-raw-sys = "0.2.1"
+linux-raw-sys = { version = "0.2.1", default-features = false, features = ["no_std", "general"]}
 sc = "0.2.7"
