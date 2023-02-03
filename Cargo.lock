@@ -16,9 +16,9 @@ checksum = "907a6699022e3baa15f1b642af8cb7583931729092ba5fcaccb7de619e4d0704"
 
 [[package]]
 name = "naked-function"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "299bb5a266f04916e8e6153ac48898817ba6cd18c96a94bd86e7290e1ad1eb9d"
+checksum = "b55ed0c875d6123dd0abd01d52cb3dc50d21b3214acb2d4dfe81a6f4ee244a6d"
 dependencies = [
  "cfg-if",
  "naked-function-macro",
@@ -26,9 +26,9 @@ dependencies = [
 
 [[package]]
 name = "naked-function-macro"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "622c118d024d9408f6e34567c89e9d652679c3ecfb7b94b060ac016c898ee58d"
+checksum = "ee6137136c12021b3bb25753d8889eb4a62c3412093eafd92066f5f6d00e83ee"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -61,7 +61,7 @@ checksum = "010e18bd3bfd1d45a7e666b236c78720df0d9a7698ebaa9c1c559961eb60a38b"
 
 [[package]]
 name = "sjlj"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "linux-raw-sys",
  "naked-function",
